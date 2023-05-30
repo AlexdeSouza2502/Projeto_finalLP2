@@ -4,6 +4,7 @@ import Model.ListCarros;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -119,15 +120,17 @@ public class LayoutLoja extends javax.swing.JFrame {
             }
         });
 
+        jTblCars.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204), new java.awt.Color(0, 0, 0), new java.awt.Color(51, 51, 51)));
         jTblCars.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Marca", "Modelo", "Ano", "Preco"
+                "id", "marca", "modelo", "ano", "preco", "vendedorId"
             }
         ));
         jScrollPane1.setViewportView(jTblCars);
@@ -228,12 +231,35 @@ public class LayoutLoja extends javax.swing.JFrame {
     }//GEN-LAST:event_jValor2ActionPerformed
 
     private void jValor3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jValor3ActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jValor3ActionPerformed
 
     /**
      * @param args the command line arguments
      */
+    
+    
+    void mostra(){
+        //limpando a tabela
+       jTblCars.setModel(new DefaultTableModel(null,new String[]{"id","marca", "modelo", "ano", "preco", "vendedorId"}));
+       
+        DefaultTableModel model = 
+                (DefaultTableModel)jTblCars.getModel();
+        Object rowData[] = new Object[9];// qtd colunas
+        Iterable<ListCarros> lista = null;
+        for(ListCarros l: lista)
+        {
+            rowData[0] = l.getId();
+            rowData[1] = l.getMarca();
+            rowData[2] = l.getModelo();
+            rowData[3] = l.getAno();
+            rowData[4] = l.getPreco();
+            rowData[5] = l.getVendedorId();
+            model.addRow(rowData);
+        }// fim preenche modelo
+    }// fim mostra
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -281,7 +307,7 @@ public class LayoutLoja extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTblCars;
+    public javax.swing.JTable jTblCars;
     private javax.swing.JLabel jTitle;
     private javax.swing.JButton jValor1;
     private javax.swing.JButton jValor2;

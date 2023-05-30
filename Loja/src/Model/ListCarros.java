@@ -86,7 +86,7 @@ public class ListCarros implements Comparable<ListCarros> {
         
     @Override
     public String toString() {
-        return getMarca() + " - " + getModelo() + " (" + getAno() + ")";
+        return getId() + "-" + getMarca() + " - " + getModelo() + " - " + getAno() + " - " + getPreco() + " - " + getVendedorId();
     }
 
     @Override
