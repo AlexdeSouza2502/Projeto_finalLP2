@@ -16,12 +16,18 @@ import javax.swing.table.DefaultTableModel;
  * @author Cliente
  */
 public class LayoutLoja extends javax.swing.JFrame {
+CarroDAO carroDAO = new CarroDAO();
+        List<ListCarros> carros = carroDAO.carregaCarrosDoBanco();
 
+        // Faça o que desejar com a lista de carros recuperados do banco de dados
+        
     /**
      * Creates new form LayoutLoja
      */
     public LayoutLoja() {
         initComponents();
+        carroDAO = new CarroDAO();
+        carregaDadosDoBanco();
     }
 
     /**
@@ -46,6 +52,9 @@ public class LayoutLoja extends javax.swing.JFrame {
         jValor3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTblCars = new javax.swing.JTable();
+        jInsert = new javax.swing.JButton();
+        jAtualizar1 = new javax.swing.JButton();
+        jDelet = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,18 +144,37 @@ public class LayoutLoja extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTblCars);
 
+        jInsert.setBackground(new java.awt.Color(204, 204, 204));
+        jInsert.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jInsert.setText("Inserir");
+        jInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jInsertActionPerformed(evt);
+            }
+        });
+
+        jAtualizar1.setBackground(new java.awt.Color(204, 204, 204));
+        jAtualizar1.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jAtualizar1.setText("Atualizar");
+        jAtualizar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAtualizar1ActionPerformed(evt);
+            }
+        });
+
+        jDelet.setBackground(new java.awt.Color(204, 204, 204));
+        jDelet.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jDelet.setText("Deletar");
+        jDelet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDeletActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(jGtr34, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jGtr36, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(149, 149, 149)
-                .addComponent(jkoenigsegg, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -164,14 +192,26 @@ public class LayoutLoja extends javax.swing.JFrame {
                 .addComponent(jValor3)
                 .addGap(210, 210, 210))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(517, Short.MAX_VALUE)
+                .addComponent(jTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(271, 271, 271))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(jGtr34, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jGtr36, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(149, 149, 149)
+                .addComponent(jkoenigsegg, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(117, 117, 117))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 998, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(271, 271, 271))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))))
+                    .addComponent(jInsert)
+                    .addComponent(jAtualizar1)
+                    .addComponent(jDelet))
+                .addGap(114, 114, 114))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,9 +239,19 @@ public class LayoutLoja extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jValor2)
                         .addComponent(jValor3)))
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(jInsert)
+                        .addGap(18, 18, 18)
+                        .addComponent(jAtualizar1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jDelet)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -233,6 +283,63 @@ public class LayoutLoja extends javax.swing.JFrame {
     private void jValor3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jValor3ActionPerformed
        
     }//GEN-LAST:event_jValor3ActionPerformed
+
+    private void jInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jInsertActionPerformed
+                                              
+    // Obtém os valores dos campos de entrada do JFrame
+       DefaultTableModel model = (DefaultTableModel) jTblCars.getModel();
+
+    // Obtém os valores diretamente da tabela
+    int id = (int) model.getValueAt(0, 0);
+    String marca = (String) model.getValueAt(0, 1);
+    String modelo = (String) model.getValueAt(0, 2);
+    int ano = (int) model.getValueAt(0, 3);
+    double preco = (double) model.getValueAt(0, 4);
+    int vendedorId = (int) model.getValueAt(0, 5);
+
+    // Cria um novo array de objetos com os dados
+    Object[] rowData = { id, marca, modelo, ano, preco, vendedorId };
+
+    // Adiciona a nova linha ao modelo da tabela
+    model.addRow(rowData);
+  
+    }//GEN-LAST:event_jInsertActionPerformed
+
+    private void jAtualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAtualizar1ActionPerformed
+        // TODO add your handling code here:
+        int rowIndex = jTblCars.getSelectedRow();
+
+    if (rowIndex >= 0) {
+        DefaultTableModel model = (DefaultTableModel) jTblCars.getModel();
+
+        // Obtém os valores diretamente da tabela
+        int id = (int) model.getValueAt(rowIndex, 0);
+        String marca = (String) model.getValueAt(rowIndex, 1);
+        String modelo = (String) model.getValueAt(rowIndex, 2);
+        int ano = (int) model.getValueAt(rowIndex, 3);
+        double preco = (double) model.getValueAt(rowIndex, 4);
+        int vendedorId = (int) model.getValueAt(rowIndex, 5);
+
+        // Atualiza os valores na tabela
+        model.setValueAt(id, rowIndex, 0);
+        model.setValueAt(marca, rowIndex, 1);
+        model.setValueAt(modelo, rowIndex, 2);
+        model.setValueAt(ano, rowIndex, 3);
+        model.setValueAt(preco, rowIndex, 4);
+        model.setValueAt(vendedorId, rowIndex, 5);
+    }
+    }//GEN-LAST:event_jAtualizar1ActionPerformed
+
+    private void jDeletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDeletActionPerformed
+        // TODO add your handling code here:
+        int rowIndex = jTblCars.getSelectedRow();
+
+    if (rowIndex >= 0) {
+        // Remove a linha selecionada do modelo da tabela
+        DefaultTableModel model = (DefaultTableModel) jTblCars.getModel();
+        model.removeRow(rowIndex);
+    }
+    }//GEN-LAST:event_jDeletActionPerformed
 
     /**
      * @param args the command line arguments
@@ -289,21 +396,18 @@ public class LayoutLoja extends javax.swing.JFrame {
             public void run() {
                 new LayoutLoja().setVisible(true);
                 
-                CarroDAO carroDAO = new CarroDAO();
-        List<ListCarros> carros = carroDAO.carregaCarrosDoBanco();
-
-        // Faça o que desejar com a lista de carros recuperados do banco de dados
-        for (ListCarros carro : carros) {
-            System.out.println(carro);
-            }
+                
           }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Gtr35;
+    private javax.swing.JButton jAtualizar1;
+    private javax.swing.JButton jDelet;
     private javax.swing.JLabel jGtr34;
     private javax.swing.JLabel jGtr36;
+    private javax.swing.JButton jInsert;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -315,4 +419,15 @@ public class LayoutLoja extends javax.swing.JFrame {
     private javax.swing.JLabel jkoenigsegg;
     private javax.swing.JLabel koeni;
     // End of variables declaration//GEN-END:variables
+
+    private void carregaDadosDoBanco() {
+        List<ListCarros> carros = carroDAO.carregaCarrosDoBanco();
+        DefaultTableModel model = (DefaultTableModel) jTblCars.getModel();
+        model.setRowCount(0); // Clear existing data
+
+        for (ListCarros carro : carros) {
+            Object[] rowData = {carro.getId(), carro.getMarca(), carro.getModelo(), carro.getAno(), carro.getPreco(), carro.getVendedorId()};
+            model.addRow(rowData);
+    }
+   }    
 }

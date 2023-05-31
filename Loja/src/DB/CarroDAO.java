@@ -19,8 +19,8 @@ import java.util.List;
 
 public class CarroDAO {
     private String url = "jdbc:mysql://localhost:3306/cars";
-    private String username = "seu_usuario";
-    private String password = "sua_senha";
+    private String username = "root";
+    private String password = "";
 
     public List<ListCarros> carregaCarrosDoBanco() {
         List<ListCarros> carros = new ArrayList<>();

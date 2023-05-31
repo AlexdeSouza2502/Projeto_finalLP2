@@ -4,8 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Cliente/Documents/NetBeansProjects/Loja/src/LayoutLoja.java</file>
-            <file>file:/C:/Users/Cliente/Documents/NetBeansProjects/Loja/src/DB/CarroDAO.java</file>
-            <file>file:/C:/Users/Cliente/Documents/NetBeansProjects/Loja/src/Model/ListCarros.java</file>
+            <file>file:/C:/Users/Cliente/Documents/NetBeansProjects/Loja/src/LojaCar.java</file>
+            <file>file:/C:/Users/Cliente/Documents/NetBeansProjects/Loja/src/CadastrarUser.java</file>
         </group>
     </open-files>
 </project-private>
